@@ -1,0 +1,90 @@
+{
+  "name": "Plant Swap App",
+  "lists": [
+    {
+      "name": "Backlog",
+      "cards": [
+        {
+          "name": "AUTH-1 – Register user (2 SP)",
+          "desc": "As a user, I can register with email and password\n\nCreate a Users document on signup. Store name, email (hashed pw), and empty trade history.",
+          "labels": ["High", "Users collection"]
+        },
+        {
+          "name": "AUTH-2 – Login (2 SP)",
+          "desc": "As a user, I can log in and stay authenticated\n\nSession token or JWT. Link to uploaded plants and swap history on login.",
+          "labels": ["High", "Users collection"]
+        },
+        {
+          "name": "LIST-1 – Create plant listing (3 SP)",
+          "desc": "As a user, I can list a plant with photo, name, and location\n\nUpload image → store as URL. Add name, select level (1–3), attach GPS coordinates. Creates a Plants document.",
+          "labels": ["High", "Plants collection"]
+        },
+        {
+          "name": "LIST-2 – Edit my plants (2 SP)",
+          "desc": "As a user, I can view and edit my listed plants\n\nProfile page shows all user's plants. Allow update or delete of own listings.",
+          "labels": ["Medium", "Plants collection"]
+        },
+        {
+          "name": "LIST-3 – Set plant level (1 SP)",
+          "desc": "As a user, I can set a plant level (1–3)\n\nLevel indicates rarity or difficulty. Shown on pin and plant card. Used for future matching logic.",
+          "labels": ["Low", "Plants collection"]
+        },
+        {
+          "name": "MAP-1 – Map with pins (3 SP)",
+          "desc": "As a user, I see a Leaflet.js map with plant pins\n\nRender a neighborhood map. Each active plant is a pin at its stored coordinates.",
+          "labels": ["High", "Leaflet.js"]
+        },
+        {
+          "name": "MAP-2 – Pin → plant card (2 SP)",
+          "desc": "As a user, clicking a pin shows the plant card\n\nPopup or side panel with photo, name, owner, and level.",
+          "labels": ["High", "Leaflet.js"]
+        },
+        {
+          "name": "MAP-3 – Real-time map (3 SP)",
+          "desc": "Map updates in real-time when new plants are added\n\nNo full reload required. Implement via polling or websocket.",
+          "labels": ["Medium", "Leaflet.js", "real-time"]
+        },
+        {
+          "name": "SWAP-1 – Send request (2 SP)",
+          "desc": "As User A, I can send a swap request from a plant card\n\nCreates a Trades document with status: pending.",
+          "labels": ["High", "Trades collection"]
+        },
+        {
+          "name": "SWAP-2 – Notification (2 SP)",
+          "desc": "As User B, I receive a notification about an incoming request\n\nIn-app notification and profile badge.",
+          "labels": ["High", "Notifications"]
+        },
+        {
+          "name": "SWAP-3 – Approve/decline (3 SP)",
+          "desc": "As User B, I can approve or decline a swap request\n\nApprove → meeting UI. Decline → rejected.",
+          "labels": ["High", "Trades collection"]
+        },
+        {
+          "name": "SWAP-4 – Complete swap (2 SP)",
+          "desc": "As a user, I can mark a swap as completed\n\nUpdates history and listing.",
+          "labels": ["Medium", "Trades collection"]
+        },
+        {
+          "name": "SWAP-5 – Swap history (2 SP)",
+          "desc": "As a user, I can view my swap history\n\nProfile shows past trades.",
+          "labels": ["Medium", "Users collection"]
+        },
+        {
+          "name": "BE-1 – Plants schema (2 SP)",
+          "desc": "Set up Plants collection\n\nSchema: name, image-URL, level, coordinates, ownerUserId, createdAt.",
+          "labels": ["High", "DB"]
+        },
+        {
+          "name": "BE-2 – Trades schema (2 SP)",
+          "desc": "Set up Trades collection\n\nSchema: plantId, userAId, userBId, status, meetingDetails.",
+          "labels": ["High", "DB"]
+        },
+        {
+          "name": "BE-3 – Users schema (2 SP)",
+          "desc": "Set up Users collection\n\nSchema: name, email, passwordHash, relations.",
+          "labels": ["High", "DB"]
+        }
+      ]
+    }
+  ]
+}
