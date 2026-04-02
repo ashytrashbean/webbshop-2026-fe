@@ -1,71 +1,83 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plot Twist</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plot Twist</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script type="module" src="map.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="map.js"></script>
 
 </head>
 <body>
 
-<br>
+  <br>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="search-icon"></div>
-  <input type="text" placeholder="Search plants…">
-</div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="search-icon"></div>
+    <input type="text" placeholder="Search plants…">
+  </div>
 
-<br>
+  <br>
 
-<!-- HERO BANNER -->
-<div class="hero-banner">
-    <img src="images/logo.png" alt="Logo" width="100%">
-</div>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+      <img src="images/logo.png" alt="Logo" width="100%">
+  </div>
 
-<br>
+  <br>
 
-<!-- TAGLINE -->
-<div class="tagline-card">
-  <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a cutting, and a handshake.</p>
-</div>
+  <!-- TAGLINE -->
+  <div class="tagline-card">
+    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a cutting, and a handshake.</p>
+  </div>
 
-<br>
+  <br>
 
-<!-- HERO IMAGE -->
-<div class=""></div>
+  <!-- HERO IMAGE -->
+  <div class=""></div>
 
-<!-- MAP SECTION -->
-<div class="current-plants">Current plants up for trade
-  <div id="map"></div>
-</div>
+  <!-- MAP SECTION -->
+  <div class="current-plants">Current plants up for trade
+    <div id="map"></div>
+  </div>
 
 
-<!-- PLANT GRID -->
-<div id="plant-grid">
+  <!-- PLANT GRID -->
+  <div id="plant-grid">
 
-</div>
+  </div>
+  <br>
 
-<br>
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <a href="#">Start</a>
+    <a href="#" hidden>Favourites</a>
+    <a href="#" hidden>Add Plant</a>
+    <a href="#" hidden>Notification</a>
+    <a href="#">Log in</a>
+    <a href="#">Admin</a>
+  </nav>
 
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <a href="#">Start</a>
-  <a href="#" hidden>Favourites</a>
-  <a href="#" hidden>Add Plant</a>
-  <a href="#" hidden>Notification</a>
-  <a href="#">Log in</a>
-  <a href="#">Admin</a>
-</nav>
+    <!-- PLANT MODAL — MORE INFO -->
+  <div id="plant-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-modal">X</button>
 
+      <img id="modal-image" src="">
+      <h2 id="modal-name"></h2>
+      <p id="modal-owner"></p>
+      <p id="modal-water"></p>
+
+      <button id="trade-btn">Send trade request</button>
+    </div>
+  </div>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+import { openPlantModal } from "./../src/scripts/index.js";
+
 // inside the setView([latitude, longitude], map view distance)
 const map =L.map('map').setView([61.52, 12.74], 4);
 
@@ -44,7 +46,17 @@ mockPlantData.forEach(plant => {
 // A. Create the Map Pin
 // We use the lat/lng from the specific plant object
 const marker = L.marker([plant.lat, plant.lng]).addTo(map);
-marker.bindPopup(`<b>${plant.name}</b> <br><img src="${plant.image}" alt="${plant.name}"><br>Owned by ${plant.owner}`);
+marker.bindPopup(`<b>${plant.name}</b><br>
+    <img src="${plant.image}" alt="${plant.name}"><br>
+    Owned by ${plant.owner}<br>
+    <button id="more-info-${plant.id}">More info</button>`);
+
+marker.on("popupopen", () => {
+    const button = document.getElementById(`more-info-${plant.id}`);
+    if (button) {
+        button.onclick = () => openPlantModal(plant);
+    }
+});
 
 // B. Create the Plant Card (HTML)
 // We use "Template Literals" (the backticks ``) to inject the data
