@@ -1,8 +1,7 @@
 export function openPlantModal(plant) {
   document.querySelector("#modal-image").src = plant.image;
   document.querySelector("#modal-name").textContent = plant.name;
-  document.querySelector("#modal-owner").textContent = "Owner: " + plant.owner;
-  document.querySelector("#modal-water").textContent = "Water: " + plant.water;
+  document.querySelector("#modal-water").textContent = "Light Level: " + plant.lightLevels;
 
   document.querySelector("#plant-modal").classList.remove("hidden");
 }

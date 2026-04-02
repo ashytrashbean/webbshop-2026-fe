@@ -59,8 +59,29 @@
     padding: 10px 0 14px;
   }
 
+  .divider{
+    width: 100%;
+  }
+
   #map{
     height: 350px;
+    z-index: 1;
+  }
+
+  #plant-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .plant-card{
+    border: 1px solid black;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Overlay */
