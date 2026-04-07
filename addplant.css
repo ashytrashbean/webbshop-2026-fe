@@ -6,20 +6,23 @@
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: #f7f3ee;
-      display: flex;
-      justify-content: center;
+      background: var(--cream);
+      color: var(--text);
+      max-width: 430px;
+      margin: 0 auto;
       min-height: 100dvh;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .phone {
+    /* .phone {
       width: 400px;
       min-height: 100dvh;
       background: #f7f3ee;
       display: flex;
       flex-direction: column;
       position: relative;
-    }
+    } */
 
     /* ── Scrollable content ── */
     .content {
@@ -83,14 +86,14 @@
     /* ── Add Plant button ── */
     .btn-add {
       width: 100%;
-      padding: 17px;
+      padding: 14px;
       background: #2e7d32;
+      color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 12px;
       font-size: 16px;
-      color: #222;
+      margin-top: 10px;
       cursor: pointer;
-      margin-top: 8px;
     }
 
     .btn-add:hover {
@@ -101,10 +104,14 @@
     .bottom-nav {
       position: fixed;
       bottom: 0;
-      width: 400px;
+      width: 100%;
+      max-width: 430px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #f7f6f3;
       border-top: 1px solid #ddd;
       display: flex;
       justify-content: space-around;
+      align-items: center;
       padding: 10px 0 14px;
     }
