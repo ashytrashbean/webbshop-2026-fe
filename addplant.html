@@ -14,11 +14,16 @@
 
     <!-- Scrollable form content -->
     <div class="content">
-      <form>
+      <form id="add-plant-form">
         <!-- Plant name -->
         <div class="field">
           <label>Plant name</label>
           <input type="text" id="plant-name" placeholder="Name of plant" />
+        </div>
+
+        <div class="field">
+          <label>https://</label>
+          <input type="text" id="plant-image" placeholder="Link with picture" />
         </div>
 
         <!-- Latin name -->
@@ -27,18 +32,23 @@
           <input type="text" id="plant-type" placeholder="Latin plant name" />
         </div>
 
+        <label>Brightness level</label><br>
+        <select name="brightness" id="brightnessLevel">
+          <option value="" disabled selected>———</option>
+          <option value="low">Low</option>
+          <option value="bright">Low-medium</option>
+          <option value="partial">Medium</option>
+          <option value="directSun">High</option>
+        </select>
+
         <!-- Picture upload -->
-        <div>
+        <!-- <div>
           <span class="upload-label">Picture of Plant</span>
           <label class="upload-box">
-            <input type="file" id="plant-image" accept="image/*" hidden />
-            <!-- Upload icon -->
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8"
-              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            </svg>
+            <input type="text" id="plant-image"/>
             Upload image
           </label>
-        </div>
+        </div> -->
 
         <!-- Pickup location -->
         <div class="field">
@@ -49,7 +59,7 @@
         <!-- Pickup time -->
         <div class="field">
           <label>What available time to pickup plant</label>
-          <input type="text" id="plant-time" placeholder="morning (7am - 12pm)" />
+          <input type="date" id="plant-time" />
         </div>
 
         <!-- Add button -->

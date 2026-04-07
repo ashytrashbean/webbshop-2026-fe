@@ -1,53 +1,50 @@
 import { getBaseUrl } from "./src/utils/api.js";
 
-const form = document.querySelector("form");
-const plantNameInput = document.querySelector("#plant-name");
-const plantTypeInput = document.querySelector("#plant-type");
-const plantImageInput = document.querySelector("#plant-image");
-const plantLocationInput = document.querySelector("#plant-location");
-const plantTimeInput = document.querySelector("#plant-time");
+const form = document.querySelector("#add-plant-form");
+const plantName = document.querySelector("#plant-name");
+const plantType = document.querySelector("#plant-type");
+const plantImage = document.querySelector("#plant-image");
+// const plantLocation = document.querySelector("#plant-location");
+const plantTime = document.querySelector("#plant-time");
+const brightnessLevel = document.querySelector("#brightnessLevel");
 
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const plantName = plantNameInput.value.trim();
-    const plantType = plantTypeInput.value.trim();
-    const plantImage = plantImageInput.files[0];
-    const plantLocation = plantLocationInput.value.trim();
-    const plantTime = plantTimeInput.value.trim();
+    const newPlant = {
+        name: plantName.value.trim(),
+        image: plantImage.value.trim(),
+        species: plantType.value.trim(),
+        lightLevels: brightnessLevel.value,
+        ownerId: "65f1a2b3c4d5e6f7a8b9c001",
+        coordinates: ["59.858", "17.644"], // Placeholder coordinates
+        meetingTime: plantTime.value,
+    };
 
-    if (!plantName || !plantType || !plantImage || !plantLocation || !plantTime) {
-        alert("Please fill in all fields and select an image.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("name", plantName);
-    formData.append("species", plantType);
-    formData.append("image", plantImage);
-    formData.append("location", plantLocation);
-    formData.append("meetingTime", plantTime);
-    formData.append("coordinates", JSON.stringify([59.858, 17.644]));
+    console.log("Submitting new plant:", newPlant);
 
     try {
-        const response = await fetch(`${getBaseUrl()}plants`, {
-            method: "POST",
-            body: formData
-        });
+    const response = await fetch(getBaseUrl() + "plants", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPlant),
+    });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+    console.log("Status:", response.status);
 
-        const data = await response.json();
-        console.log("Created plant:", data);
+    const text = await response.text();
+    console.log("Response from backend:", text);
 
-        alert("Plant added successfully!");
-        form.reset();
-        } catch (error) {
-            console.error("Failed to add plant:", error);
-            alert("Failed to add plant. Please try again.");
-        }
-        
-        console.log(formData); 
+    if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    alert("Plant added successfully!");
+    form.reset();
+    } catch (error) {
+        console.error("Error adding plant:", error);
+        alert("An error occurred. Please try again.");
+    }
 });
