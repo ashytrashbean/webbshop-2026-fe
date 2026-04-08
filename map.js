@@ -1,5 +1,11 @@
 import { getBaseUrl } from "./src/utils/api.js";
-import { openPlantModal } from "./../src/scripts/index.js";
+import { openPlantModal } from "./src/scripts/index.js";
+
+const currentUser = {
+    _id: "demo-user-123",
+    name: "Demo User"
+};
+
 // import { icon } from "leaflet";
 
 let pinIcon = L.icon({
@@ -48,10 +54,11 @@ async function Getplants(map) {
         <button id="more-info-${plant._id}">More info</button>`);
 
         marker.on("popupopen", () => {
-        const button = document.getElementById(`more-info-${plant._id}`);
-        if (button) {
-            button.onclick = () => openPlantModal(plant);
-        }});
+            const button = document.getElementById(`more-info-${plant._id}`);
+            if (button) {
+                button.onclick = () => openPlantModal(plant, currentUser);
+            }
+        });
 
         
 
