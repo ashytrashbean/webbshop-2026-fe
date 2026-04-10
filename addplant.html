@@ -52,8 +52,17 @@
 <br>
         <!-- Pickup location -->
         <div class="field">
+          <!-- <input type="text" id="plant-location" placeholder="e.g. The library" />  -->
           <label>Where to pickup plant</label>
-          <input type="text" id="plant-location" placeholder="e.g. The library" /> 
+          <select title="choose city" name="city" id="lib-city">
+            <option value="" disabled selected>City</option>
+            <option value="Stockholm">Stockholm</option>
+            <option value="Uppsala">Uppsala</option>
+            <option value="Västerås">Västerås</option>
+          </select>
+          <select title="choose library" name="library" id="lib">
+            <option value="" disabled selected>Library</option>
+          </select>
           <br><br>
           <div id="map"></div>
         </div>
