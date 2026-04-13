@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plot Twist - User Home Page</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plot Twist - User Home Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="map.js"></script>
-  <script type="module" src="src/scripts/index.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="map.js"></script>
+    <script type="module" src="src/scripts/index.js"></script>
+  </head>
 
-</head>
-<body>
+  <body>
 
   <!-- TOP BAR -->
   <!-- <div class="topbar">
@@ -100,9 +100,44 @@
 
 </nav>
 
-    <!-- PLANT MODAL — MORE INFO -->
-  <div id="plant-modal" class="modal hidden">
-    <div class="modal-content">
+      <!-- PLANT GRID -->
+    <div id="plant-grid"></div>
+    <br><br><br><br>
+
+      <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="./index.html">
+        <br>
+        <img src="./images/icons/active-home.png" alt="Start">
+      </a>
+
+      <a href="./favourites.html"">
+        <br>
+        <img src="./images/icons/fav.png" alt="Favourites">
+      </a>
+
+      <a href="./addplant.html">
+        <img src="./images/icons/add-plant.png" alt="Add Plant">
+      </a>
+
+      <a href="./notifications.html">
+        <br>
+        <img src="./images/icons/notif.png" alt="Notification">
+      </a>
+
+      <a href="./userProfile.html">
+        <br>
+        <img src="./images/icons/user-log-in.png" alt="Log in">
+      </a>
+
+      <a href="#" hidden>
+        <img src="./images/icons/admin.png" alt="Admin">
+      </a>
+    </nav>
+
+      <!-- PLANT MODAL — MORE INFO -->
+    <div id="plant-modal" class="modal hidden">
+      <div class="modal-content">
       <button id="close-modal">X</button>
 
       <img id="modal-image" src="">
@@ -112,7 +147,22 @@
       <p id="modal-date"></p>
 
       <button id="trade-btn">Send trade request</button>
+      </div>
     </div>
 
-</body>
+    <div id="notification-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-notification-modal">X</button>
+
+        <h2>Notifications</h2>
+        <p id="notification-message"></p>
+
+        <div class="notification-actions">
+          <button id="accept-btn">Accept</button>
+          <button id="decline-btn">Decline</button>
+        </div>
+      </div>
+    </div>
+
+  </body>
 </html>
