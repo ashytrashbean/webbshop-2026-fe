@@ -3,7 +3,7 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plot Twist - User Home Page</title>
+  <title>Plot Twist - User Profile</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -20,44 +20,26 @@
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <!-- <div class="topbar">
-    <input type="text" placeholder="Search plants…">
-  </div> -->
+<h1 class="title">My Profile</h1>
+<p class="subtitle">This is me</p>
 
-  <!-- HERO BANNER -->
-  <div class="hero-banner">
-      <img src="images/plot-twist.png" alt="Logo" class="logo" width="100%">
-  </div>
-
-  <br>
-
-  <!-- TAGLINE -->
-  <div class="tagline-card">
-    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a cutting, and a handshake.</p>
-  </div>
-
-  <br>
-
-  <!-- HERO IMAGE -->
-  <div class=""></div>
-  <img src="/images/parts_ divider_copy_3.png" class="divider" alt="">
-
-  <!-- MAP SECTION -->
-  <div class="current-plants">Current plants up for trade
-    <div id="map"></div>
-  </div>
 <br>
+    <div class="form-page">
+        <div class="content">
+            <button>Listed</button>
+            <button>Pending</button>
+            <button>Swapped</button>
+        </div>
+    <p class="subtitle">My plants</p>
+    </div>
+ 
 
-  <!-- PLANT GRID -->
-  <div id="plant-grid"></div>
-  <br><br><br><br>
 
   <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <a href="./index.html">
     <br>
-    <img src="./images/icons/active-home.png" alt="Start">
+    <img src="./images/icons/home.png" alt="Start">
   </a>
 
   <a href="./favourites.html"">
@@ -76,7 +58,7 @@
 
   <a href="./userProfile.html">
     <br>
-    <img src="./images/icons/user-log-in.png" alt="Log in">
+    <img src="./images/icons/active-user.png" alt="Log in">
   </a>
 
   <a href="#" hidden>
@@ -84,19 +66,6 @@
   </a>
 </nav>
 
-    <!-- PLANT MODAL — MORE INFO -->
-  <div id="plant-modal" class="modal hidden">
-    <div class="modal-content">
-      <button id="close-modal">X</button>
-
-      <img id="modal-image" src="">
-      <h2 id="modal-name"></h2>
-      <p id="modal-water"></p>
-      <p id="modal-owner"></p>
-      <p id="modal-date"></p>
-
-      <button type="button" id="trade-btn">Send trade request</button>
-    </div>
 
 </body>
 </html>
