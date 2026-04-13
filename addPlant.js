@@ -60,8 +60,6 @@ const mockLibraries = [
 ]
 
 
-
-
 const cityDropdown = document.querySelector("#lib-city");
 const libDropdown = document.querySelector("#lib");
 
@@ -120,7 +118,6 @@ function GetMeetups(map){
 
         marker.bindPopup(`<b>${biblio.library}</b>`)
         markers.addLayer(marker);
-        markers.addLayer(currentManualMarker);
         markerMap[biblio.library] = marker;
     })
 
