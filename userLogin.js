@@ -61,7 +61,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Creates the search function
-L.Control.geocoder().addTo(map);
+// L.Control.geocoder().addTo(map);
 
 let selectCoordinates = [61.52, 12.74];
 let currentManualMarker = null;
@@ -97,6 +97,7 @@ signupBtn.addEventListener("click", async () => {
   const name = registerName.value;
   const email = registerEmail.value;
   const password = registerPassword.value;
+  const location = selectCoordinates
 
   // Enkel validering
   if (!email || !password) {
@@ -111,7 +112,7 @@ signupBtn.addEventListener("click", async () => {
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name, email, password , selectCoordinates})
+        body: JSON.stringify({ name, email, password , location})
     });
 
     const data = await response.json();
