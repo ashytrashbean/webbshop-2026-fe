@@ -18,8 +18,8 @@ async function loadNotifications() {
         }
         const trades = await response.json();
         const myTrades = trades.filter(trade =>
-            trade.ownerId._id === currentUserId ||
-            trade.requesterId._id === currentUserId
+        trade.ownerId?._id === currentUserId ||
+        trade.requesterId?._id === currentUserId
         );
     
         renderNotifications(myTrades);
@@ -45,11 +45,18 @@ function renderNotifications(trades) {
 }
 
 function createTradeCard(trade) {
+
     const card = document.createElement("article");
     card.className = "notification-card";
 
-    const isOwner = trade.ownerId._id === currentUserId;
-    const otherUserName = isOwner ? trade.requesterId.name : trade.ownerId.name;
+    const ownerId = trade.ownerId?._id;
+    const requesterId = trade.requesterId?._id;
+
+    const isOwner = ownerId === currentUserId;
+
+    const otherUserName = isOwner
+        ? (trade.requesterId?.name || "Unknown user")
+        : (trade.ownerId?.name || "Unknown user");
 
     let actionButtons = "";
 
