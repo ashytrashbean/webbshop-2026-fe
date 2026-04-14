@@ -39,11 +39,62 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
+
+// ----------------- karta ----------------------------
+
+
+let pinIcon = L.icon({
+    iconUrl: './images/pin-logo.png',
+
+    iconSize:     [38, 50], // size of the icon
+    iconAnchor:   [19, 50], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -50] // point from which the popup should open relative to the iconAnchor
+});
+
+// inside the setView([latitude, longitude], map view distance)
+const map =L.map('map').setView([61.52, 12.74], 4);
+
+// This is purely the map object itself
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Creates the search function
+L.Control.geocoder().addTo(map);
+
+let selectCoordinates = [61.52, 12.74];
+let currentManualMarker = null;
+
+function manualLocation(latlng){
+    const coords = [latlng.lat, latlng.lng];
+    selectCoordinates = coords;
+    
+    if(currentManualMarker){
+        currentManualMarker.setLatLng(latlng);
+    } else {
+        currentManualMarker = L.marker(latlng, {icon: pinIcon, draggable: true}).addTo(map);
+    }
+    map.flyTo(coords,15);
+}
+
+map.on('click', (e)=> manualLocation(e.latlng));
+
+const geocoder = L.Control.geocoder({ defaultMarkGeocode: false}).addTo(map);
+geocoder.on('markgeocode', (e)=> manualLocation(e.geocode.center));
+
+
+// ----------------- karta ----------------------------
+
+
+
+let registerName = document.querySelector("#registerUsername");
 let registerEmail = document.querySelector("#registerUserEmail");
 let registerPassword = document.querySelector("#registerUserPassword");
 let signupBtn = document.querySelector("#signupBtn");
 
 signupBtn.addEventListener("click", async () => {
+  const name = registerName.value;
   const email = registerEmail.value;
   const password = registerPassword.value;
 
@@ -60,7 +111,7 @@ signupBtn.addEventListener("click", async () => {
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ name, email, password , selectCoordinates})
     });
 
     const data = await response.json();
