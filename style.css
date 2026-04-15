@@ -262,6 +262,11 @@ body {
   float: right;
 }
 
+.filter {
+  display: flex;
+  justify-content: end;
+}
+
 .icon-wrapper {
 position: relative;
 display: inline-block;
@@ -353,6 +358,37 @@ display: inline-block;
   margin: 0;
   font-size: 14px;
   color: gray;
+}
+
+
+/* ——— NOTIFICATIONS ——— */
+.notification-plant-image {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.notification-img-text {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.status {
+  font-style: italic;
+  text-transform: capitalize;
+  color: var(--green-deep);
+}
+
+.notification-big-card {
+  border: #222 solid 1px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
 }
 
 /* TABLET (≥ 768px) */

@@ -132,18 +132,15 @@ form.addEventListener("submit", async (e) => {
         image: plantImage.value.trim(),
         species: plantType.value.trim(),
         lightLevels: brightnessLevel.value,
-        ownerId: "65f1a2b3c4d5e6f7a8b9c001",
+        ownerId: "65f1a2b3c4d5e6f7a8b9c001", // Amara Okafor
         coordinates: selectCoordinates, 
         meetingTime: plantTime.value,
     };
-    console.log("Submitting new plant:", newPlant);
     
     try {
         const response = await fetch(getBaseUrl() + "plants", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json", },
             body: JSON.stringify(newPlant),
         });
         
