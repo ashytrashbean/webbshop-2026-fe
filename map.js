@@ -1,5 +1,5 @@
 import { getBaseUrl } from "./src/utils/api.js";
-import { openPlantModal } from "./src/scripts/index.js";
+import { openPlantModal } from "./src/scripts/startpage.js";
 
 const currentUser = {
     _id: "demo-user-123",
