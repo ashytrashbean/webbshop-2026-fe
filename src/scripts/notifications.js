@@ -106,6 +106,7 @@ function createTradeCard(trade) {
 async function updateTradeStatus(tradeId, newStatus) {
     const url = `${getBaseUrl()}trades/${tradeId}/status`;
 
+    // Debugging logs
     console.log("PATCH url:", url);
     console.log("tradeId:", tradeId);
     console.log("newStatus raw:", JSON.stringify(newStatus));
@@ -119,17 +120,17 @@ async function updateTradeStatus(tradeId, newStatus) {
             })
         });
     
-        const text = await response.text();
-        console.log("Raw response text:", text);
+        const text = await response.text(); // Get raw response text for debugging
+        console.log("Raw response text:", text); 
     
-        let data = null;
-        try {
+        let data = null; 
+        try { // Try to parse JSON, but if it fails, use raw text as message
             data = text ? JSON.parse(text) : null;
         } catch {
             data = { message: text };
         }
     
-        if (!response.ok) {
+        if (!response.ok) { // If response is not ok, throw an error with message from response
             throw new Error(data?.message || `HTTP ${response.status}`);
         }
     
