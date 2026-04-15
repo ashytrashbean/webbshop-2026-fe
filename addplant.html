@@ -3,90 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Plant</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+  <title>Plot Twist - Add Plant</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script type="module" src="addPlant.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="/addPlant.js"></script>
 
 </head>
 <body>
-  <div class="phone">
+<h1 class="title">Add New Plant</h1>
+<p class="subtitle">What do you got for us?</p>
 
-    <!-- Scrollable form content -->
-    <div class="content">
-      <h1 class="title">Add New Plant</h1>
-      <form id="add-plant-form">
-        <!-- Plant name -->
-        <div class="field">
-          <label>Plant name</label>
-          <input type="text" id="plant-name" placeholder="Name of plant" />
-        </div>
-<br>
-        <div class="field">
-          <label>Picture</label>
-          <input type="text" id="plant-image" placeholder="URL to picture" />
-        </div>
-<br>
-        <!-- Latin name -->
-        <div class="field">
-          <label>Plants Latin name</label>
-          <input type="text" id="plant-type" placeholder="Latin plant name" />
-        </div>
-<br>
-        <div>
-          <select name="brightness" id="brightnessLevel">
-            <option value="" disabled selected>Brightness level</option>
-            <option value="low">Low</option>
-            <option value="bright">Low-medium</option>
-            <option value="partial">Medium</option>
-            <option value="directSun">High</option>
-          </select>
-        </div>
-<br>
-        <!-- Pickup location -->
-        <div class="field">
-          <label>Where to pickup plant</label>
-          <input type="text" id="plant-location" placeholder="e.g. The library" />
-        </div>
-<br>
-        <!-- Pickup time -->
-        <div class="field">
-          <label>Available day to pickup plant</label>
-          <input type="date" id="plant-time"/>
-        </div>
-<br>
-        <!-- Add button -->
-        <button class="btn-add" id="addPlant-button">Add Plant</button>
-      </form>
+  <div class="form-page">
+
+<!-- Scrollable form content -->
+<div class="content">
+  <form id="add-plant-form" class="add-plant-form">
+    <!-- Plant name -->
+    <div class="field">
+      <label>Plant name</label>
+      <input type="text" id="plant-name" placeholder="Name of plant" />
     </div>
+    <br>
+    <div class="field">
+      <label>Picture</label>
+      <input type="text" id="plant-image" placeholder="URL to picture" />
+    </div>
+    <br>
+    <!-- Latin name -->
+    <div class="field">
+      <label>Plants Latin name</label>
+      <input type="text" id="plant-type" placeholder="Latin plant name" />
+    </div>
+    <br>
+    <div>
+      <select title="plant brightness" name="brightness" id="brightnessLevel">
+        <option value="" disabled selected>Brightness level</option>
+        <option value="low">Low</option>
+        <option value="bright">Low-medium</option>
+        <option value="partial">Medium</option>
+        <option value="directSun">High</option>
+      </select>
+    </div>
+    <br>
+    <!-- Pickup location -->
+    <div class="field">
+      <!-- <input type="text" id="plant-location" placeholder="e.g. The library" />  -->
+      <label>Where to pickup plant</label>
+      <select title="choose city" name="city" id="lib-city">
+        <option value="" disabled selected>City</option>
+        <option value="Stockholm">Stockholm</option>
+        <option value="Uppsala">Uppsala</option>
+        <option value="Västerås">Västerås</option>
+      </select>
+      <select title="choose library" name="library" id="lib">
+        <option value="" disabled selected>Library</option>
+      </select>
+      <br><br>
+      <div id="map"></div>
+    </div>
+    <br>
+    <!-- Pickup time -->
+    <div class="field">
+      <label>Available day to pickup plant</label>
+      <input type="date" id="plant-time" title="Available day to pickup plant"/>
+    </div>
+    <br>
+    <!-- Add button -->
+    <button type="submit" class="btn-add" id="addPlant-button">Add Plant</button>
+  </form>
+</div>
 
-      <!-- Nav bar -->
-  <nav class="bottom-nav">
-    <a href="./index.html">
+<!-- Nav bar -->
+<nav class="bottom-nav">
+  <div class="nav-logo">
+    <img src="./images/pin-logo.png" alt="Pin" height="40px">
+    <div>
+      <img src="./images/plot.png" alt="Plot" height="15px">
       <br>
-      <img src="images/icons/home.png" alt="Start">
+      <img src="./images/twist.png" alt="Twist" height="15px">
+    </div>
+  </div>
+  <div class="home">
+    <a href="./startpage.html" class="icon-wrapper">
+      <img src="./images/icons/home.png" alt="Start">
+      <span class="tooltip">Start</span>
     </a>
+  </div>
 
-    <a href="./favourites.html"">
-      <br>
-      <img src="images/icons/fav.png" alt="Favourites">
+  <div class="favourites">
+    <a href="./favourites.html" class="icon-wrapper">
+      <img src="./images/icons/fav.png" alt="Favourites">
+      <span class="tooltip">Favourites</span>
     </a>
+  </div>
 
-    <a href="./addplant.html">
-      <img src="images/icons/add-plant.png" alt="Add Plant">
+  <div class="add-plant">
+    <a href="./addplant.html" class="icon-wrapper">
+      <img src="./images/icons/active-add-plant.png" alt="Add Plant">
+      <span class="tooltip">Add Plant</span>
     </a>
+  </div>
 
-    <a href="./notifications.html">
-      <br>
-      <img src="images/icons/notif.png" alt="Notification">
+  <div class="notifications">
+    <a href="./notifications.html" class="icon-wrapper">
+      <img src="./images/icons/notif.png" alt="Notifications">
+      <span class="tooltip">Notifications</span>
     </a>
+  </div>
 
-    <a href="./login.html">
-      <br>
-      <img src="images/icons/user-log-in.png" alt="Log in">
+  <div class="user-profile">
+    <a href="./userProfile.html" class="icon-wrapper">
+      <img src="./images/icons/user-log-in.png" alt="User Profile">
+      <span class="tooltip">Profile</span>
     </a>
-  </nav>
+  </div>
 
+  <div class="admin" hidden>
+    <a href="#" class="icon-wrapper">
+      <img src="./images/icons/admin.png" alt="Admin">
+      <span class="tooltip">Admin</span>
+    </a>
+  </div>
+
+</nav>
 
   </div>
 </body>

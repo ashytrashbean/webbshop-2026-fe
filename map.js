@@ -1,5 +1,5 @@
 import { getBaseUrl } from "./src/utils/api.js";
-import { openPlantModal } from "./src/scripts/index.js";
+import { openPlantModal } from "./src/scripts/startpage.js";
 
 const currentUser = {
     _id: "demo-user-123",
@@ -43,29 +43,38 @@ async function Getplants(map) {
 
     let allCardsHtml ="";
 
+    const markers = new L.MarkerClusterGroup();
+
+    const markerMap= {};
+
     // This is your "Engine"
     plants.forEach(plant => {
 
         // A. Create the Map Pin
         // We use the lat/lng from the specific plant object
-        const marker = L.marker(plant.coordinates, {icon: pinIcon}).addTo(map);
-        marker.bindPopup(`<b>${plant.name}</b><br>
-        <img src="${plant.image}" alt="${plant.name}" height="100"><br>
-        <button id="more-info-${plant._id}">More info</button>`);
 
+        const marker = L.marker(plant.coordinates, {icon: pinIcon});
+
+        
+        marker.bindPopup(`<b>${plant.name}</b><br>
+            <img src="${plant.image}" alt="${plant.name}" height="100"><br>
+            <button id="more-info-${plant._id}">More info</button>`);
+            
         marker.on("popupopen", () => {
             const button = document.getElementById(`more-info-${plant._id}`);
             if (button) {
                 button.onclick = () => openPlantModal(plant, currentUser);
             }
         });
+        markers.addLayer(marker);
+        markerMap[plant._id] = marker;
 
         
 
         allCardsHtml = `
         <div class="plant-card" data-id="${plant._id}">
-            <img src="${plant.image}" alt="${plant.name}" height="100">
-            <h3>${plant.name}</h3>
+            <img src="${plant.image}" alt="${plant.name}" height="91px">
+            <h4>${plant.name}</h4>
             <p>Light level: ${plant.lightLevels}</p>
         </div>
         `;
@@ -74,7 +83,33 @@ async function Getplants(map) {
         cardContainer.innerHTML += allCardsHtml;
     });
 
-        return plants;
+    const allCards = document.querySelectorAll(".plant-card");
+    const mapElement = document.getElementById('map');
+
+    allCards.forEach(card=>{
+        card.addEventListener('click',()=>{
+
+            const plantId = card.getAttribute("data-id");
+            const targetMarker = markerMap[plantId];
+
+            if(targetMarker){
+                mapElement.scrollIntoView({behavior: 'smooth', block:'center'});
+
+                map.flyTo(targetMarker.getLatLng(),16,{duration:4});
+
+                map.once('moveend', ()=>{
+                    markers.zoomToShowLayer(targetMarker,() =>{
+                        targetMarker.openPopup();
+                    });
+                })
+
+            }
+        });
+    });
+
+    map.addLayer(markers)
+    return plants;
+
 }
 
 Getplants(map);

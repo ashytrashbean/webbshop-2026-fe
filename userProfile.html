@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plot Twist - User Profile</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="map.js"></script>
+  <script type="module" src="startpage.html"></script>
+</head>
+<body>
+
+<div class="logout">
+  <a href="./index.html" class="icon-wrapper">
+    <img src="./images/icons/logout.png" alt="Log out">
+    <span class="tooltip">Log out</span>
+  </a>
+</div>
+
+<h1 class="title">My Profile</h1>
+
+<br><br>
+<div class="profile-row">
+    <div class="avatar-wrapper">
+        <div class="avatar" id="avatar">Pic.</div>
+    
+        <!-- Plus-overlay -->
+        <div class="overlay">
+            <span class="plus-icon">+</span>
+        </div>
+    </div>
+    
+    <h2 class="name">Full Name</h2>
+    <p class="region">Region</p>
+</div>
+
+<div class="form-page">
+    <div class="content">
+        <div class="profile-buttons">
+        <button>Listed</button>
+        <button>Pending</button>
+        <button>Swapped</button>
+        </div>
+    </div>
+
+<p class="subtitle">My plants</p>
+</div>
+ 
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="nav-logo">
+        <img src="./images/pin-logo.png" alt="Pin" height="40px">
+        <div>
+            <img src="./images/plot.png" alt="Plot" height="15px">
+            <br>
+            <img src="./images/twist.png" alt="Twist" height="15px">
+        </div>
+    </div>
+    <div class="home">
+        <a href="./index.html" class="icon-wrapper">
+            <img src="./images/icons/home.png" alt="Start">
+            <span class="tooltip">Start</span>
+        </a>
+    </div>
+
+    <div class="favourites">
+        <a href="./favourites.html" class="icon-wrapper">
+            <img src="./images/icons/fav.png" alt="Favourites">
+            <span class="tooltip">Favourites</span>
+        </a>
+    </div>
+
+    <div class="add-plant">
+        <a href="./addplant.html" class="icon-wrapper">
+            <img src="./images/icons/add-plant.png" alt="Add Plant">
+            <span class="tooltip">Add Plant</span>
+        </a>
+    </div>
+
+    <div class="notifications">
+        <a href="./notifications.html" class="icon-wrapper">
+            <img src="./images/icons/notif.png" alt="Notifications">
+            <span class="tooltip">Notifications</span>
+        </a>
+    </div>
+
+    <div class="user-profile">
+        <a href="./userProfile.html" class="icon-wrapper">
+            <img src="./images/icons/active-user.png" alt="Log in">
+            <span class="tooltip">Log in</span>
+        </a>
+    </div>
+
+    <div class="admin" hidden>
+        <a href="#" class="icon-wrapper">
+            <img src="./images/icons/admin.png" alt="Admin">
+            <span class="tooltip">Admin</span>
+        </a>
+    </div>
+
+</nav>
+
+</body>
+</html>

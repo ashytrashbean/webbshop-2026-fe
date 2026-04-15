@@ -3,7 +3,7 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plot Twist</title>
+  <title>Plot Twist - Startpage</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -12,30 +12,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="map.js"></script>
-  <script type="module" src="src/scripts/index.js"></script>
+  <script type="module" src="startpage.js"></script>
 
 </head>
 <body>
 
-  <br>
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <input type="text" placeholder="Search plants…">
-  </div>
-
-  <br>
-
   <!-- HERO BANNER -->
   <div class="hero-banner">
-      <img src="images/plot-twist.png" alt="Logo" class="logo" width="100%">
+      <img src="images/plot-twist-side-logo.png" alt="Logo" class="logo" width="100%">
   </div>
 
   <br>
 
   <!-- TAGLINE -->
   <div class="tagline-card">
-    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a cutting, and a handshake.</p>
+    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a plant, and a handshake.</p>
   </div>
 
   <br>
@@ -58,33 +49,56 @@
 
   <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <a href="./index.html">
-    <br>
-    <img src="./images/icons/home.png" alt="Start">
-  </a>
+  <div class="nav-logo">
+    <img src="./images/pin-logo.png" alt="Pin" height="40px">
+    <div>
+      <img src="./images/plot.png" alt="Plot" height="15px">
+      <br>
+      <img src="./images/twist.png" alt="Twist" height="15px">
+    </div>
+  </div>
+    <div class="home">
+        <a href="./index.html" class="icon-wrapper">
+            <img src="./images/icons/active-home.png" alt="Start">
+            <span class="tooltip">Start</span>
+        </a>
+    </div>
 
-  <a href="./favourites.html"">
-    <br>
-    <img src="./images/icons/fav.png" alt="Favourites">
-  </a>
+    <div class="favourites" hidden>
+        <a href="./favourites.html" class="icon-wrapper">
+            <img src="./images/icons/fav.png" alt="Favourites">
+            <span class="tooltip">Favourites</span>
+        </a>
+    </div>
 
-  <a href="./addplant.html">
-    <img src="./images/icons/add-plant.png" alt="Add Plant">
-  </a>
+    <div class="add-plant" hidden>
+        <a href="./addplant.html" class="icon-wrapper">
+            <img src="./images/icons/add-plant.png" alt="Add Plant">
+            <span class="tooltip">Add Plant</span>
+        </a>
+    </div>
 
-  <a href="./notifications.html">
-    <br>
-    <img src="./images/icons/notif.png" alt="Notification">
-  </a>
+    <div class="notifications" hidden>
+        <a href="./notifications.html" class="icon-wrapper">
+            <img src="./images/icons/notif.png" alt="Notifications">
+            <span class="tooltip">Notifications</span>
+        </a>
+    </div>
 
-  <a href="./login.html">
-    <br>
-    <img src="./images/icons/user-log-in.png" alt="Log in">
-  </a>
+    <div class="user-login">
+        <a href="./userLogin.html" class="icon-wrapper">
+            <img src="./images/icons/user-log-in.png" alt="Log in">
+            <span class="tooltip">Log in</span>
+        </a>
+    </div>
 
-  <a href="#" hidden>
-    <img src="./images/icons/admin.png" alt="Admin">
-  </a>
+    <div class="admin">
+        <a href="adminLogin.html" class="icon-wrapper">
+            <img src="./images/icons/admin.png" alt="Admin">
+            <span class="tooltip">Admin</span>
+        </a>
+    </div>
+
 </nav>
 
     <!-- PLANT MODAL — MORE INFO -->
@@ -94,12 +108,12 @@
 
       <img id="modal-image" src="">
       <h2 id="modal-name"></h2>
-      <p id="modal-water"></p>
       <p id="modal-owner"></p>
-      <p id="modal-date"></p>
+      <p id="modal-water"></p>
 
       <button id="trade-btn">Send trade request</button>
     </div>
+  </div>
 
 </body>
 </html>

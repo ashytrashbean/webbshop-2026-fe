@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log In</title>
+    <title>Plot Twist - Notifications</title>
 
     <!-- Fonts -->
     <link
@@ -16,36 +16,75 @@
 </head>
 
 <body>
+
+<div class="filter">
+  <a href="notifications.html" class="icon-wrapper">
+    <img src="./images/icons/filter.png" alt="Filter">
+    <span class="tooltip">Filter</span>
+  </a>
+</div>
+
+<h1 class="title">My Notifications</h1>
+<p class="subtitle">Swap or no swap</p>
+
+    <div class="form-page">
 <div class="content">
-    <h1>My Notifications</h1>
+    
 </div>
 
       <!-- Nav bar -->
-  <nav class="bottom-nav">
-    <a href="./index.html">
+<nav class="bottom-nav">
+  <div class="nav-logo">
+    <img src="./images/pin-logo.png" alt="Pin" height="40px">
+    <div>
+      <img src="./images/plot.png" alt="Plot" height="15px">
       <br>
-      <img src="images/icons/home.png" alt="Start">
+      <img src="./images/twist.png" alt="Twist" height="15px">
+    </div>
+  </div>
+  <div class="home">
+    <a href="./startpage.html" class="icon-wrapper">
+      <img src="./images/icons/home.png" alt="Start">
+      <span class="tooltip">Start</span>
     </a>
+  </div>
 
-    <a href="./favourites.html"">
-      <br>
-      <img src="images/icons/fav.png" alt="Favourites">
+  <div class="favourites">
+    <a href="./favourites.html" class="icon-wrapper">
+      <img src="./images/icons/fav.png" alt="Favourites">
+      <span class="tooltip">Favourites</span>
     </a>
+  </div>
 
-    <a href="./addplant.html">
-      <img src="images/icons/add-plant.png" alt="Add Plant">
+  <div class="add-plant">
+    <a href="./addplant.html" class="icon-wrapper">
+      <img src="./images/icons/add-plant.png" alt="Add Plant">
+      <span class="tooltip">Add Plant</span>
     </a>
+  </div>
 
-    <a href="./notifications.html">
-      <br>
-      <img src="images/icons/notif.png" alt="Notification">
+  <div class="notifications">
+    <a href="./notifications.html" class="icon-wrapper">
+      <img src="./images/icons/active-notif.png" alt="Notifications">
+      <span class="tooltip">Notifications</span>
     </a>
+  </div>
 
-    <a href="./login.html">
-      <br>
-      <img src="images/icons/user-log-in.png" alt="Log in">
+  <div class="user-profile">
+    <a href="./userProfile.html" class="icon-wrapper">
+      <img src="./images/icons/user-log-in.png" alt="User Profile">
+      <span class="tooltip">Profile</span>
     </a>
-  </nav>
+  </div>
+
+  <div class="admin" hidden>
+    <a href="#" class="icon-wrapper">
+      <img src="./images/icons/admin.png" alt="Admin">
+      <span class="tooltip">Admin</span>
+    </a>
+  </div>
+
+</nav>
 
 </body>
 

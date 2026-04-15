@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plot Twist</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plot Twist - User Home Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="map.js"></script>
+  <script type="module" src="userLogin.js"></script>
 
-</head>
-<body>
-
-  <br>
+  <body>
 
   <!-- TOP BAR -->
-  <div class="topbar">
+  <!-- <div class="topbar">
     <input type="text" placeholder="Search plants…">
-  </div>
-
-  <br>
+  </div> -->
 
   <!-- HERO BANNER -->
   <div class="hero-banner">
-      <img src="images/plot-twist.png" alt="Logo" class="logo" width="100%">
+      <img src="images/plot-twist-side-logo.png" alt="Logo" class="logo" width="100%">
   </div>
 
   <br>
 
   <!-- TAGLINE -->
   <div class="tagline-card">
-    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a cutting, and a handshake.</p>
+    <p>PLOT TWIST is a hyperlocal app for sharing and trading plants with neighbors. No store. No shipping. Just a map, a plant, and a handshake.</p>
   </div>
 
   <br>
@@ -47,59 +46,94 @@
   <div class="current-plants">Current plants up for trade
     <div id="map"></div>
   </div>
-
+<br>
 
   <!-- PLANT GRID -->
-  <div id="plant-grid">
-
-  </div>
-  <br>
+  <div id="plant-grid"></div>
+  <br><br><br><br>
 
   <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <a href="./index.html">
-    <br>
-    <img src="./images/icons/home.png" alt="Start">
-  </a>
+  <div class="nav-logo">
+    <img src="./images/pin-logo.png" alt="Pin" height="40px">
+    <div>
+      <img src="./images/plot.png" alt="Plot" height="15px">
+      <br>
+      <img src="./images/twist.png" alt="Twist" height="15px">
+    </div>
+  </div>
+  <div class="home">
+    <a href="./startpage.html" class="icon-wrapper">
+      <img src="./images/icons/active-home.png" alt="Start">
+      <span class="tooltip">Start</span>
+    </a>
+  </div>
 
-  <a href="./favourites.html" hidden>
-    <br>
-    <img src="./images/icons/fav.png" alt="Favourites">
-  </a>
+  <div class="favourites">
+    <a href="./favourites.html" class="icon-wrapper">
+      <img src="./images/icons/fav.png" alt="Favourites">
+      <span class="tooltip">Favourites</span>
+    </a>
+  </div>
 
-  <a href="./addplant.html" hidden>
-    <img src="./images/icons/add-plant.png" alt="Add Plant">
-  </a>
+  <div class="add-plant">
+    <a href="./addplant.html" class="icon-wrapper">
+      <img src="./images/icons/add-plant.png" alt="Add Plant">
+      <span class="tooltip">Add Plant</span>
+    </a>
+  </div>
 
-  <a href="./notifications.html" hidden>
-    <br>
-    <img src="./images/icons/notif.png" alt="Notification">
-  </a>
+  <div class="notifications">
+    <a href="./notifications.html" class="icon-wrapper">
+      <img src="./images/icons/notif.png" alt="Notifications">
+      <span class="tooltip">Notifications</span>
+    </a>
+  </div>
 
-  <a href="./login.html">
-    <br>
-    <img src="./images/icons/user-log-in.png" alt="Log in">
-  </a>
+  <div class="user-profile">
+    <a href="./userProfile.html" class="icon-wrapper">
+      <img src="./images/icons/user-log-in.png" alt="User Profile">
+      <span class="tooltip">Profile</span>
+    </a>
+  </div>
 
-  <a href="./admin.html">
-    <br>
-    <img src="./images/icons/admin.png" alt="Admin">
-  </a>
+  <div class="admin" hidden>
+    <a href="#" class="icon-wrapper">
+      <img src="./images/icons/admin.png" alt="Admin">
+      <span class="tooltip">Admin</span>
+    </a>
+  </div>
+
 </nav>
 
-    <!-- PLANT MODAL — MORE INFO -->
-  <div id="plant-modal" class="modal hidden">
-    <div class="modal-content">
+      <!-- PLANT MODAL — MORE INFO -->
+    <div id="plant-modal" class="modal hidden">
+      <div class="modal-content">
       <button id="close-modal">X</button>
 
       <img id="modal-image" src="">
       <h2 id="modal-name"></h2>
-      <p id="modal-owner"></p>
       <p id="modal-water"></p>
+      <p id="modal-owner"></p>
+      <p id="modal-date"></p>
 
       <button id="trade-btn">Send trade request</button>
+      </div>
     </div>
-  </div>
 
-</body>
+    <div id="notification-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-notification-modal">X</button>
+
+        <h2>Notifications</h2>
+        <p id="notification-message"></p>
+
+        <div class="notification-actions">
+          <button id="accept-btn">Accept</button>
+          <button id="decline-btn">Decline</button>
+        </div>
+      </div>
+    </div>
+
+  </body>
 </html>

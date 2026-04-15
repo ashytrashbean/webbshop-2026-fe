@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plot Twist - Log In User</title>
+    
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="userLogin.js"></script>
+</head>
+
+<body>
+    
+<!-- OBS DETTA ÄR ENDAST FÖR TEST AV LOG OUT -->
+<div class="logout">
+  <a href="userLogin.html" class="icon-wrapper">
+    <img src="./images/icons/logout.png" id="logoutBtn" type="button" alt="Log out">
+    <span class="tooltip">Log out</span>
+  </a>
+</div>
+<!-- OBS DETTA ÄR ENDAST FÖR TEST AV LOG OUT -->
+
+<h1 class="title">Welcome Back</h1>
+<p class="subtitle">Log in to your account</p>
+
+    <div class="form-page">
+
+        <div class="content">
+
+            <!-- Login Section -->
+
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter your email" />
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" />
+            </div>
+
+            <button type="button" class="btn-login" id="login">Log In</button>
+
+            <p class="extra">Forgot password?</p>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- Create Account Section -->
+            <h2 class="subtitle">New here?</h2>
+
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text" id="registerUsername" placeholder="Enter your name" />
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" id="registerUserEmail" placeholder="Enter your email" />
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="registerUserPassword" placeholder="Create a password" />
+            </div>
+
+            <div id="map"></div>
+
+            <button class="btn-signup" type="button" id="signupBtn">Create Account</button>
+        </div>
+
+
+        <form>
+
+<!-- Nav bar -->
+<nav class="bottom-nav">
+<div class="nav-logo">
+    <img src="./images/pin-logo.png" alt="Pin" height="40px">
+    <div>
+        <img src="./images/plot.png" alt="Plot" height="15px">
+        <br>
+        <img src="./images/twist.png" alt="Twist" height="15px">
+    </div>
+</div>
+<div class="home">
+    <a href="./index.html" class="icon-wrapper">
+        <img src="./images/icons/home.png" alt="Start">
+        <span class="tooltip">Start</span>
+    </a>
+</div>
+
+<div class="favourites" hidden>
+    <a href="./favourites.html" class="icon-wrapper">
+        <img src="./images/icons/fav.png" alt="Favourites">
+        <span class="tooltip">Favourites</span>
+    </a>
+</div>
+
+<div class="add-plant" hidden>
+    <a href="./addplant.html" class="icon-wrapper">
+        <img src="./images/icons/add-plant.png" alt="Add Plant">
+        <span class="tooltip">Add Plant</span>
+    </a>
+</div>
+
+<div class="notifications" hidden>
+    <a href="./notifications.html" class="icon-wrapper">
+        <img src="./images/icons/notif.png" alt="Notifications">
+        <span class="tooltip">Notifications</span>
+    </a>
+</div>
+
+<div class="user-profile">
+    <a href="./userLogin.html" class="icon-wrapper">
+        <img src="./images/icons/active-user.png" alt="Log in">
+        <span class="tooltip">Log in</span>
+    </a>
+</div>
+
+<div class="admin" hidden>
+    <a href="#" class="icon-wrapper">
+        <img src="./images/icons/admin.png" alt="Admin">
+        <span class="tooltip">Admin</span>
+    </a>
+</div>
+
+</nav>
+
+</div>
+
+</body>
+
+</html>
