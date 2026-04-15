@@ -262,6 +262,11 @@ body {
   float: right;
 }
 
+.filter {
+  display: flex;
+  justify-content: end;
+}
+
 .icon-wrapper {
 position: relative;
 display: inline-block;
