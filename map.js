@@ -1,12 +1,16 @@
 import { getBaseUrl } from "./src/utils/api.js";
+import { smartFetch } from "./src/utils/api.js";
 // import { openPlantModal } from "./src/scripts/startpage.js";
 
-const currentUser = {
-    _id: "demo-user-123",
-    name: "Demo User"
-};
+// const currentUser = {
+//     _id: "demo-user-123",
+//     name: "Demo User"
+// };
 
-// import { icon } from "leaflet";
+
+const isLoggedIn = !!sessionStorage.getItem("accessToken");
+const savedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
+
 
 let pinIcon = L.icon({
     iconUrl: './images/pin-logo.png',
@@ -16,8 +20,14 @@ let pinIcon = L.icon({
     popupAnchor:  [0, -50] // point from which the popup should open relative to the iconAnchor
 });
 
+// Find starting coordinates: Use user's home OR default to Sweden
+const startCoords = (isLoggedIn && savedUserInfo?.location)
+    ? savedUserInfo.location
+    : [61.52, 12.74];
+
 // inside the setView([latitude, longitude], map view distance)
-const map =L.map('map').setView([61.52, 12.74], 4);
+const map =L.map('map').setView(startCoords, isLoggedIn ? 12 : 4);
+// 12 is zoomed in close to home, 4 is zoomed out to the whole country
 
 // This is purely the map object itself
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -27,6 +37,24 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Creates the search function
 L.Control.geocoder().addTo(map);
+
+// -------------------------------------------
+function filterCardsByMap(map, markerMap){
+    const bounds = map.getBounds();
+
+    for(const plantId in markerMap){
+        const marker = markerMap[plantId];
+        const card = document.querySelector(`.plant-card[data-id="${plantId}]"`);
+
+        if(card){
+            if(bounds.contain(marker.getLatLng())){
+                card.style.display = "block";
+            }else{
+                card.style.display = "none";
+            }
+        }
+    }
+}
 
 // -------------------------------------------
 
@@ -63,7 +91,13 @@ async function Getplants(map) {
         marker.on("popupopen", () => {
             const button = document.getElementById(`more-info-${plant._id}`);
             if (button) {
-                button.onclick = () => openPlantModal(plant, currentUser);
+                button.onclick = () => {
+                    if(isLoggedIn){
+                        openPlantModal(plant, savedUserInfo);
+                    } else{
+                        alert("You have to be logged in to see this feature!")
+                    }
+                };
             }
         });
         markers.addLayer(marker);
@@ -75,7 +109,6 @@ async function Getplants(map) {
         <div class="plant-card" data-id="${plant._id}">
             <img src="${plant.image}" alt="${plant.name}" height="91px">
             <h4>${plant.name}</h4>
-            <p>Light level: ${plant.lightLevels}</p>
         </div>
         `;
 
@@ -107,7 +140,14 @@ async function Getplants(map) {
         });
     });
 
+    if(isLoggedIn){
+        map.on('moveend', () =>{
+            filterCardsByMap(map, markerMap);
+        })
+    }
+
     map.addLayer(markers)
+    filterCardsByMap(map, markerMap);
     return plants;
 
 }

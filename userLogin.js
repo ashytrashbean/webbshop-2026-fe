@@ -1,4 +1,6 @@
 import { getBaseUrl } from "./src/utils/api.js";
+import { smartFetch } from "./src/utils/api.js";
+
 
 // log in // 
 
@@ -29,7 +31,12 @@ loginBtn.addEventListener("click", async () => {
 
     if (response.ok) {
       console.log("Inloggning lyckades!", data);
-      localStorage.setItem("token", data.token);
+
+      sessionStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+
+      localStorage.setItem("userInfo", JSON.stringify(data.user));
+
       window.location.href = "./startpage.html";
     } else {
       console.error("Fel:", data.message);
@@ -40,13 +47,6 @@ loginBtn.addEventListener("click", async () => {
     console.error("Nätverksfel:", error);
     alert("Kunde inte nå servern.");
   }
-
-  // log out //
-    // const logoutBtn = document.querySelector("#logout");
-    // logoutBtn.addEventListener("click", () => {
-    //     localStorage.removeItem(token);
-    //     console.log("Utloggning lyckades!", data);
-    // });
 
 });
 
@@ -124,8 +124,10 @@ signupBtn.addEventListener("click", async () => {
     const data = await response.json();
 
     if (response.ok) {
-        console.log("Registrering lyckades!", data);
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("userInfo", JSON.stringify(data.user));
+        
         window.location.href = "./startpage.html";
     
     } else {
