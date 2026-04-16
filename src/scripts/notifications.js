@@ -60,6 +60,10 @@ function createTradeCard(trade) {
     const ownerId = trade.ownerId?._id;
     const isOwner = ownerId === currentUserId;
 
+    const cardTypeClass = isOwner ? "incoming" : "outgoing";
+    const tradeTypeText = isOwner ? "Incoming request!" : "awaiting response...";
+    const personLabel = isOwner ? "Requested by" : "Owner";
+
     const otherUserName = isOwner
         ? (trade.requesterId?.name || "Unknown user")
         : (trade.ownerId?.name || "Unknown user");
@@ -76,19 +80,27 @@ function createTradeCard(trade) {
     }
 
     card.innerHTML = `
-        <div class="notification-big-card">
+        <div class="notification-big-card ${cardTypeClass}">
+            <p class="trade-type">${tradeTypeText}</p>
+
             <div class="notification-img-text">
                 <img src="${trade.plantId?.image || ""}" alt="${trade.plantId?.name || "Plant"}" class="notification-plant-image">
+
                 <div class="notification-text">
                     <h3>${trade.plantId?.name || "Unknown plant"}</h3>
-                    <p>Owner: <strong>${otherUserName}</strong></p>
+                    <p>${personLabel}: <strong>${otherUserName}</strong></p>
                     <p>Status: <span class="status">${trade.status}</span></p>
-                    <p>Meeting time: ${trade.plantId?.meetingTime ? new Date(trade.plantId.meetingTime).toLocaleDateString() : "Not set"}</p>
+                    <p>Meeting time: ${
+                        trade.plantId?.meetingTime
+                            ? new Date(trade.plantId.meetingTime).toLocaleDateString()
+                            : "Not set"
+                    }</p>
                 </div>
             </div>
+
             ${actionButtons}
         </div>
-        `;
+    `;
 
     const acceptBtn = card.querySelector(".accept-btn");
     const rejectBtn = card.querySelector(".reject-btn");

@@ -386,9 +386,35 @@ display: inline-block;
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   align-items: center;
   margin-top: 16px;
+}
+
+.notification-big-card.incoming {
+  border-left: 6px solid #4CAF50;
+  background-color: #f6fff6;
+}
+
+.notification-big-card.outgoing {
+  border-left: 6px solid #FFA726;
+  background-color: #fffaf3;
+}
+
+.trade-type {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.notification-big-card.incoming .trade-type {
+  color: #2e7d32;
+}
+
+.notification-big-card.outgoing .trade-type {
+  color: #ef6c00;
 }
 
 /* TABLET (≥ 768px) */
