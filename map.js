@@ -39,6 +39,24 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 L.Control.geocoder().addTo(map);
 
 // -------------------------------------------
+function filterCardsByMap(map, markerMap){
+    const bounds = map.getBounds();
+
+    for(const plantId in markerMap){
+        const marker = markerMap[plantId];
+        const card = document.querySelector(`.plant-card[data-id="${plantId}]"`);
+
+        if(card){
+            if(bounds.contain(marker.getLatLng())){
+                card.style.display = "block";
+            }else{
+                card.style.display = "none";
+            }
+        }
+    }
+}
+
+// -------------------------------------------
 
 async function Getplants(map) {
     const url = `${getBaseUrl()}plants`;
@@ -122,7 +140,14 @@ async function Getplants(map) {
         });
     });
 
+    if(isLoggedIn){
+        map.on('moveend', () =>{
+            filterCardsByMap(map, markerMap);
+        })
+    }
+
     map.addLayer(markers)
+    filterCardsByMap(map, markerMap);
     return plants;
 
 }
