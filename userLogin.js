@@ -110,7 +110,7 @@ signupBtn.addEventListener("click", async () => {
     alert("Fyll i både e-post och lösenord.");
     return;
   }
-8
+
     try {
     const url = `${getBaseUrl()}auth/register`;
     const response = await fetch(url, {
