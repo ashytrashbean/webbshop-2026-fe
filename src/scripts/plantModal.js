@@ -11,6 +11,7 @@ export function openPlantModal(plant) {
     const image = document.querySelector("#modal-image");
     const name = document.querySelector("#modal-name");
     const owner = document.querySelector("#modal-owner");
+    const meetingTime = document.querySelector("#modal-time");
     const tradeBtn = document.querySelector("#trade-btn");
 
     if (!modal || !image || !name || !owner || !tradeBtn) return;
@@ -19,7 +20,20 @@ export function openPlantModal(plant) {
     image.alt = plant.name || "Plant image";
     name.textContent = plant.name || "Unknown plant";
     owner.textContent = "Owner: " + (plant.ownerId?.name || "Unknown");
-    meetingTime.textContent = "Available for pickup: " + (new Date(plant.meetingTime)).toLocaleString() || "Unknown";
+    
+    if (plant.meetingTime) {
+        const formattedMeetingTime = new Date(plant.meetingTime).toLocaleString("sv-SE", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+
+        meetingTime.textContent = "Available for pickup: " + formattedMeetingTime;
+    } else {
+        meetingTime.textContent = "Available for pickup: Unknown";
+    }
 
     tradeBtn.onclick = async () => {
         await sendTradeRequest(plant);
