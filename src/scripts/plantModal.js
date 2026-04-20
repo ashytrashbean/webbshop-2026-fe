@@ -19,6 +19,7 @@ export function openPlantModal(plant) {
     image.alt = plant.name || "Plant image";
     name.textContent = plant.name || "Unknown plant";
     owner.textContent = "Owner: " + (plant.ownerId?.name || "Unknown");
+    meetingTime.textContent = "Available for pickup: " + (new Date(plant.meetingTime)).toLocaleString() || "Unknown";
 
     tradeBtn.onclick = async () => {
         await sendTradeRequest(plant);
