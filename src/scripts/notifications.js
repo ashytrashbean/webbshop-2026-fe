@@ -1,9 +1,11 @@
 import { getBaseUrl } from "../utils/api.js";
 import { requireAuth, getCurrentUserId } from "../utils/auth.js";
+import { smartFetch } from "../utils/api.js";
 
 requireAuth();
 
 const currentUserId = getCurrentUserId();
+const token = sessionStorage.getItem("accessToken");
 
 document.addEventListener("DOMContentLoaded", () => {
     loadNotifications();
@@ -16,7 +18,10 @@ async function loadNotifications() {
     container.innerHTML = "<p>Loading trades...</p>";
 
     try {
-        const response = await fetch(`${getBaseUrl()}trades`);
+        
+        const response = await smartFetch(`trades/mine`,{
+            method: "GET",
+        }); 
 
         if (!response.ok) {
             throw new Error("Could not fetch trades");
@@ -24,12 +29,7 @@ async function loadNotifications() {
 
         const trades = await response.json();
 
-        const myTrades = trades.filter(trade =>
-            trade.ownerId?._id === currentUserId ||
-            trade.requesterId?._id === currentUserId
-        );
-
-        renderNotifications(myTrades);
+        renderNotifications(trades);
     } catch (error) {
         console.error("Error loading notifications:", error);
         container.innerHTML = "<p>Could not load notifications.</p>";
@@ -160,12 +160,11 @@ function createTradeCard(trade) {
 }
 
 async function updateTradeStatus(tradeId, newStatus) {
-    const url = `${getBaseUrl()}trades/${tradeId}/status`;
+    const url = `trades/${tradeId}/status`;
 
     try {
-        const response = await fetch(url, {
+        const response = await smartFetch(url, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
             status: newStatus.trim()
             })

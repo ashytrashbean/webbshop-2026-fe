@@ -60,7 +60,13 @@ function filterCardsByMap(map, markerMap){
 
 async function Getplants(map) {
     const url = `${getBaseUrl()}plants`;
-    const response = await fetch(url);
+    
+    const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }); 
 
     // getting the plant data here
     const plants = await response.json();

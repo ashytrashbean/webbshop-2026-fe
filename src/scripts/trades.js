@@ -1,4 +1,4 @@
-import { getBaseUrl } from "../utils/api.js";
+import { getBaseUrl, smartFetch } from "../utils/api.js";
 import { getCurrentUserId } from "../utils/auth.js";
 
 let selectedTrade = null;
@@ -20,17 +20,14 @@ export async function sendTradeRequest(plant) {
         return;
     }
 
-    const url = `${getBaseUrl()}trades`;
-
     const requestBody = {
         plantId: plant._id,
         requesterId: currentUserId
     };
 
     try {
-        const response = await fetch(url, {
+        const response = await smartFetch(`trades`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestBody)
         });
 
@@ -64,12 +61,10 @@ export async function sendTradeRequest(plant) {
 }
 
 async function updateTradeStatus(tradeId, newStatus) {
-    const url = `${getBaseUrl()}trades/${tradeId}`;
 
     try {
-        const response = await fetch(url, {
+        const response = await smartFetch(`trades/${tradeId}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: newStatus })
         });
     
@@ -107,10 +102,10 @@ export async function checkForTradeRequests() {
     const currentUserId = getCurrentUserId();
     if (!currentUserId) return;
 
-    const url = `${getBaseUrl()}trades`;
-
     try {
-        const response = await fetch(url);
+        const response = await smartFetch(`trades`, {
+            method: "GET",
+        }); 
         const trades = await response.json();
         
         const incomingRequests = trades.filter(trade =>

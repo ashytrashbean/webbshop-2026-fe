@@ -1,4 +1,4 @@
-import { getBaseUrl } from "./src/utils/api.js";
+import { getBaseUrl, smartFetch } from "./src/utils/api.js";
 
 const form = document.querySelector("#add-plant-form");
 const plantName = document.querySelector("#plant-name");
@@ -144,9 +144,8 @@ form.addEventListener("submit", async (e) => {
     };
     
     try {
-        const response = await fetch(getBaseUrl() + "plants", {
+        const response = await smartFetch("plants", {
             method: "POST",
-            headers: { "Content-Type": "application/json", },
             body: JSON.stringify(newPlant),
         });
         

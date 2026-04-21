@@ -1,4 +1,4 @@
-import { getBaseUrl } from "../utils/api.js";
+import { getBaseUrl, smartFetch } from "../utils/api.js";
 import { isLoggedIn, getCurrentUserId } from "../utils/auth.js";
 
 export function openPlantModal(plant) {
@@ -91,17 +91,14 @@ async function sendTradeRequest(plant) {
         return;
     }
 
-    const url = `${getBaseUrl()}trades`;
-
     const requestBody = {
         plantId: plant._id,
         requesterId: currentUserId
     };
 
     try {
-        const response = await fetch(url, {
+        const response = await smartFetch(`trades`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestBody)
         });
     

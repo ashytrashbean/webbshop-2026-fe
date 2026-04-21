@@ -1,5 +1,4 @@
-import { getRegionFromCoords } from "./src/utils/api.js";
-import { getBaseUrl } from "./src/utils/api.js";
+import { getRegionFromCoords, smartFetch } from "./src/utils/api.js";
 
 function renderPlantCards(plants){
     const container = document.querySelector("#plant-grid");
@@ -35,15 +34,21 @@ async function loadProfile() {
         regionElement.textContent = regionName;
     }
 
-    const url = `${getBaseUrl()}users/id/${user._id}`;
-    const response = await fetch(url)
-
+    const response = await smartFetch("auth/me");
     const userProfile = await response.json();
 
     // Calculate stats from the fetched userProfile
     const listedCount = userProfile.plants.length;
-    const pendingCount = userProfile.activeTrades.filter(t => t.status === "pending").length;
-    const swappedCount = userProfile.activeTrades.filter(t => t.status === "approved").length;
+
+    let pendingCount = 0;
+    if (userProfile.activeTrades) {
+        pendingCount = userProfile.activeTrades.length;
+    }
+
+    let swappedCount = 0;
+    if (userProfile.history) {
+        swappedCount = userProfile.history.length;
+    }
 
     document.querySelector("#listed-number").textContent = listedCount;
     document.querySelector("#pending-number").textContent = pendingCount;
