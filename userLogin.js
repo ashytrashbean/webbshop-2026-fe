@@ -126,7 +126,7 @@ signupBtn.addEventListener("click", async () => {
 
   if (!email || !password) {
     Toastify({
-      text: "Please fill in both email and password.",
+      text: "Please fill in all details.",
       duration: 4000,
       style: {
         background: "#d32f2f"
