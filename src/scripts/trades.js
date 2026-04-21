@@ -125,6 +125,7 @@ export async function checkForTradeRequests() {
 export function initTradeModals() {
     const closeNotificationBtn = document.querySelector("#close-notification-modal");
     const acceptBtn = document.querySelector("#accept-btn");
+    const completeBtn = document.querySelector("#complete-btn");
     const declineBtn = document.querySelector("#decline-btn");
     const notificationModal = document.querySelector("#notification-modal");
 
@@ -141,6 +142,26 @@ export function initTradeModals() {
             await updateTradeStatus(selectedTrade._id, "approved");
             Toastify({
                 text: "Trade approved!",
+                duration: 2000,
+                gravity: "top",
+                position: "right",
+                style : {
+                    background: "linear-gradient(to right, #4CAF50, #81C784)",
+                    color: "#fff",
+                }
+            }).showToast();
+
+            notificationModal?.classList.add("hidden");
+        };
+    }
+
+    if (completeBtn) {
+        completeBtn.onclick = async () => {
+            if (!selectedTrade) return;
+            
+            await updateTradeStatus(selectedTrade._id, "completed");
+            Toastify({
+                text: "Trade Completed!",
                 duration: 2000,
                 gravity: "top",
                 position: "right",

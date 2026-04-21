@@ -145,7 +145,7 @@ async function Getplants(map) {
             if(targetMarker){
                 mapElement.scrollIntoView({behavior: 'smooth', block:'center'});
 
-                map.flyTo(targetMarker.getLatLng(),16,{duration:4});
+                map.flyTo(targetMarker.getLatLng(),16,{duration:1});
 
                 map.once('moveend', ()=>{
                     markers.zoomToShowLayer(targetMarker,() =>{
