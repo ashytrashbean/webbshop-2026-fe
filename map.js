@@ -91,8 +91,8 @@ async function Getplants(map) {
 
         
         marker.bindPopup(`<b>${plant.name}</b><br>
-            <img src="${plant.image}" alt="${plant.name}" height="100"><br>
-            <button id="more-info-${plant._id}">More info</button>`);
+            <img src="${plant.image}" alt="${plant.name}" width="100%"><br>
+            <button id="more-info-${plant._id}" class="more-info-btn">More info</button>`);
             
         marker.on("popupopen", () => {
             const button = document.getElementById(`more-info-${plant._id}`);

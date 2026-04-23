@@ -110,6 +110,22 @@ body {
   object-position: center;
 }
 
+.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.8;
+}
+
+.leaflet-popup-content button {
+  margin-top: 0;
+}
+
+.leaflet-popup-content img {
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* ── MODAL ── */
 .modal {
   position: fixed;
@@ -188,7 +204,13 @@ body {
 }
 
 /* ── BUTTONS ── */
-.btn-login, .btn-signup, .btn-add {
+.btn-login, 
+.btn-signup, 
+.btn-add, 
+.more-info-btn,
+.accept-btn, 
+.reject-btn,
+.complete-btn {
   width: 100%;
   padding: 14px;
   background: #2e7d32;
@@ -200,8 +222,31 @@ body {
   cursor: pointer;
 }
 
-.btn-login:hover, .btn-signup:hover, .btn-add:hover {
+.btn-login:hover, 
+.btn-signup:hover, 
+.btn-add:hover, 
+.more-info-btn:hover {
   background: #256428;
+}
+
+.reject-btn {
+  background: #b84444;
+}
+
+.reject-btn:hover {
+  background: #852525;
+}
+
+#close-modal {
+  width: fit-content;
+  position: relative;
+  right: -120px;
+  margin: 0 0 10px 0;
+  padding: 0;
+  color: #888;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .profile-buttons { 
@@ -222,6 +267,10 @@ body {
   color: white;
   flex: 1;
   text-align: center;
+}
+
+.leaflet-control-geocoder-icon:hover {
+  background-color: transparent;
 }
 
 .extra {
@@ -415,6 +464,12 @@ display: inline-block;
   opacity: 0.7;
 }
 
+.notification-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
 .trade-type {
   font-size: 0.85rem;
   font-weight: 600;
@@ -429,6 +484,46 @@ display: inline-block;
 
 .notification-big-card.outgoing .trade-type {
   color: #ef6c00;
+}
+
+/* — ADD PLANT — */
+#brightnessLevel,
+#lib-city,
+#lib {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-bottom: 10px;
+
+  color: #2f2f2f;
+  background-color: #f1efeb;
+
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+
+  outline: none;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#brightnessLevel:hover,
+#lib-city:hover,
+#lib:hover {
+  background-color: #E8E7E3;
+}
+
+#brightnessLevel,
+#lib-city,
+#lib {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 20 20'><path d='M5 7l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 32px;
 }
 
 /* TABLET (≥ 768px) */

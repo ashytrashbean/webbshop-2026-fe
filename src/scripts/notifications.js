@@ -62,15 +62,28 @@ function createTradeCard(trade) {
 
     const cardTypeClass = isOwner ? "incoming" : "outgoing";
 
-        // NEW: status class
-        let statusClass = "";
+    let statusClass = "";
+    if (trade.status === "approved") {
+        statusClass = "status-approved";
+    } else if (trade.status === "completed") {
+        statusClass = "status-completed";
+    } else if (trade.status === "cancelled") {
+        statusClass = "status-cancelled";
+    }
 
-        if (trade.status === "approved") {
-            statusClass = "status-approved";
-        } else if (trade.status === "completed") {
-            statusClass = "status-completed";
-        }
-    const tradeTypeText = isOwner ? "Incoming request!" : "My request";
+    let tradeTypeText = "";
+    if (trade.status === "pending") {
+        tradeTypeText = isOwner ? "Incoming request!" : "My request";
+    } else if (trade.status === "approved") {
+        tradeTypeText = "Request approved";
+    } else if (trade.status === "completed") {
+        tradeTypeText = "Request completed";
+    } else if (trade.status === "cancelled") {
+        tradeTypeText = "Request cancelled";
+    } else {
+        tradeTypeText = "Request";
+    }
+
     const personLabel = isOwner ? "Requested by" : "Owner";
 
     const otherUserName = isOwner
@@ -79,28 +92,26 @@ function createTradeCard(trade) {
 
     let actionButtons = "";
 
-    if (trade.status !== "completed") {
+    if (isOwner && trade.status === "pending") {
         actionButtons = `
             <div class="notification-actions">
-                <button class="reject-btn">Cancel</button>
+                <button class="accept-btn">Accept</button>
+                <button class="reject-btn">Reject</button>
             </div>
         `;
-    } 
-    
-    if(isOwner && trade.status === "pending"){
-        actionButtons = `
-        <div class="notification-actions">
-            <button class="accept-btn">Accept</button>
-            <button class="reject-btn">Reject</button>
-        </div>
-        `;  
-    } else if(isOwner && trade.status === "approved"){
+    } else if (isOwner && trade.status === "approved") {
         actionButtons = `
             <div class="notification-actions">
                 <button class="complete-btn">Complete</button>
                 <button class="reject-btn">Cancel</button>
             </div>
-        `;        
+        `;
+    } else if (!isOwner && trade.status !== "completed" && trade.status !== "cancelled") {
+        actionButtons = `
+            <div class="notification-actions">
+                <button class="reject-btn">Cancel</button>
+            </div>
+        `;
     }
 
     card.innerHTML = `
@@ -108,22 +119,29 @@ function createTradeCard(trade) {
             <p class="trade-type">${tradeTypeText}</p>
 
             <div class="notification-img-text">
-                <img src="${trade.plantId?.image || ""}" alt="${trade.plantId?.name || "Plant"}" class="notification-plant-image">
+                <img 
+                    src="${trade.plantId?.image || ""}" 
+                    alt="${trade.plantId?.name || "Plant"}" 
+                    class="notification-plant-image"
+                >
 
                 <div class="notification-text">
                     <h3>${trade.plantId?.name || "Unknown plant"}</h3>
                     <p>${personLabel}: <strong>${otherUserName}</strong></p>
                     <p>Status: <span class="status">${trade.status}</span></p>
-                    <p>Meeting time: ${
-                        trade.plantId?.meetingTime
-                            ? new Date(trade.plantId.meetingTime).toLocaleString([], {
-                                year: 'numeric', 
-                                month: 'numeric', 
-                                day: 'numeric', 
-                                hour: '2-digit', 
-                                minute: '2-digit'})
-                            : "Not set"
-                    }</p>
+                    <p>
+                        Meeting time: ${
+                            trade.plantId?.meetingTime
+                                ? new Date(trade.plantId.meetingTime).toLocaleString([], {
+                                    year: "numeric",
+                                    month: "numeric",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit"
+                                })
+                                : "Not set"
+                        }
+                    </p>
                 </div>
             </div>
 
@@ -142,16 +160,16 @@ function createTradeCard(trade) {
         });
     }
 
-    if (rejectBtn) {
-        rejectBtn.addEventListener("click", async () => {
-            await updateTradeStatus(trade._id, "cancelled");
+    if (completeBtn) {
+        completeBtn.addEventListener("click", async () => {
+            await updateTradeStatus(trade._id, "completed");
             loadNotifications();
         });
     }
 
-    if (completeBtn) {
-        completeBtn.addEventListener("click", async () => {
-            await updateTradeStatus(trade._id, "completed");
+    if (rejectBtn) {
+        rejectBtn.addEventListener("click", async () => {
+            await updateTradeStatus(trade._id, "cancelled");
             loadNotifications();
         });
     }
