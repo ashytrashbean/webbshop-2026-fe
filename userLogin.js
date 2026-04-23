@@ -108,7 +108,11 @@ function manualLocation(latlng){
 
 map.on('click', (e)=> manualLocation(e.latlng));
 
-const geocoder = L.Control.geocoder({ defaultMarkGeocode: false}).addTo(map);
+const geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false,
+    collapsed: true
+}).addTo(map);
+
 geocoder.on('markgeocode', (e)=> manualLocation(e.geocode.center));
 
 // register new user //
