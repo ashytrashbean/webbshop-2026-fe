@@ -105,7 +105,7 @@ async function Getplants(map) {
                             text: "Join the community to see details and trade plants",
                             duration: 2000,
                             gravity: "top",
-                            position: "right",
+                            position: "center",
                             style : {
                                 background: "linear-gradient(to right, #4CAF50, #81C784)",
                                 color: "#fff",

@@ -188,7 +188,7 @@ async function updateTradeStatus(tradeId, newStatus) {
         console.error("Error updating trade:", error);
         Toastify({
             text: "Oops! Something went wrong..." + error.message,
-            duration: 4000,
+            duration: 3000,
             style: {
                 background: "#d32f2f"
             }

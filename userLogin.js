@@ -15,7 +15,7 @@ loginBtn.addEventListener("click", async () => {
   if (!email || !password) {
     Toastify({
       text: "Please fill in both email and password.",
-      duration: 4000,
+      duration: 3000,
       style: {
         background: "#d32f2f"
       }
@@ -48,7 +48,7 @@ loginBtn.addEventListener("click", async () => {
       console.error("Fel:", data.message);
       Toastify({
         text: "Something went wrong with your login. Please check your credentials and try again.",
-        duration: 4000,
+        duration: 3000,
         style: {
           background: "#d32f2f"
         }
@@ -59,7 +59,7 @@ loginBtn.addEventListener("click", async () => {
     console.error("Nätverksfel:", error);
     Toastify({
       text: "Something went wrong with the network. Please try again later.",
-      duration: 4000,
+      duration: 3000,
       style: {
         background: "#d32f2f"
       }
@@ -127,7 +127,7 @@ signupBtn.addEventListener("click", async () => {
   if (!email || !password) {
     Toastify({
       text: "Please fill in all details.",
-      duration: 4000,
+      duration: 3000,
       style: {
         background: "#d32f2f"
       }
@@ -158,7 +158,7 @@ signupBtn.addEventListener("click", async () => {
         console.error("Fel:", data.message);
         Toastify({
           text: "Something went wrong with your registration. Please check your details and try again.",
-          duration: 4000,
+          duration: 3000,
           style: {
             background: "#d32f2f"
           }
@@ -169,7 +169,7 @@ signupBtn.addEventListener("click", async () => {
     console.error("Nätverksfel:", error);
     Toastify({
       text: "Something went wrong with the network. Please try again later.",
-      duration: 4000,
+      duration: 3000,
       style: {
         background: "#d32f2f"
       }

@@ -11,7 +11,7 @@ export async function sendTradeRequest(plant) {
             text: "Join the community to see details and trade plants",
             duration: 2000,
             gravity: "top",
-            position: "right",
+            position: "center",
             style : {
                 background: "linear-gradient(to right, #4CAF50, #81C784)",
                 color: "#fff",
@@ -42,7 +42,7 @@ export async function sendTradeRequest(plant) {
             text: "Trade request sent successfully!",
             duration: 2000,
             gravity: "top",
-            position: "right",
+            position: "center",
             style : {
                 background: "linear-gradient(to right, #4CAF50, #81C784)",
                 color: "#fff",
@@ -52,7 +52,7 @@ export async function sendTradeRequest(plant) {
     } catch (error) {
         Toastify({
             text: "Oops! Something went wrong..." + (error.message ? ` (${error.message})` : ""),
-            duration: 4000,
+            duration: 3000,
             style: {
                 background: "#d32f2f"
             }
@@ -80,7 +80,7 @@ async function updateTradeStatus(tradeId, newStatus) {
         console.error("Error updating trade:", error);
         Toastify({
             text: "Oops! Something went wrong..." + (error.message ? ` (${error.message})` : ""),
-            duration: 4000,
+            duration: 3000,
             style: {
                 background: "#d32f2f"
             }
@@ -144,7 +144,7 @@ export function initTradeModals() {
                 text: "Trade approved!",
                 duration: 2000,
                 gravity: "top",
-                position: "right",
+                position: "center",
                 style : {
                     background: "linear-gradient(to right, #4CAF50, #81C784)",
                     color: "#fff",
@@ -164,7 +164,7 @@ export function initTradeModals() {
                 text: "Trade Completed!",
                 duration: 2000,
                 gravity: "top",
-                position: "right",
+                position: "center",
                 style : {
                     background: "linear-gradient(to right, #4CAF50, #81C784)",
                     color: "#fff",
@@ -182,7 +182,7 @@ export function initTradeModals() {
             await updateTradeStatus(selectedTrade._id, "cancelled");
             Toastify({
             text: "Trade cancelled",
-            duration: 4000,
+            duration: 3000,
             style: {
                 background: "#d32f2f"
             }
